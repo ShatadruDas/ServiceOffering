@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Sd.ServiceOffering.Api/Sd.ServiceOffering.Api.csproj" />
+  <Project Path="Sd.SolutionOffering.Adapter/Sd.SolutionOffering.Adapter.Db.csproj" />
+  <Project Path="Sd.SolutionOffering.Domain/Sd.SolutionOffering.Domain.csproj" />
+</Solution>

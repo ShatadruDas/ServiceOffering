@@ -1,0 +1,54 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+out/
+publish/
+artifacts/
+
+# Visual Studio and VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test and coverage output
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# NuGet and generated package files
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET generated files
+wwwroot/lib/
+appsettings.Local.json
+
+# Entity Framework generated artifacts
+Migrations/
+*.efpt.config.json
+
+# SQL Server and local database files
+*.mdf
+*.ndf
+*.ldf
+*.bak
+*.dacpac
+*.publish.xml
+
+# Logs and local environment files
+*.log
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini

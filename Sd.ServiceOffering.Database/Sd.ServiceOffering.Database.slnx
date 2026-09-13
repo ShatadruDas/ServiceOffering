@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Sd.ServiceOffering.Database/Sd.ServiceOffering.Database.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
