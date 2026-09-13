@@ -1,7 +1,4 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build and test Service Offering
 
 on:
   push:
@@ -10,19 +7,39 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  api:
+    name: Build and test API
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore API solution
+        run: dotnet restore Sd.ServiceOffering.Api/Sd.ServiceOffering.Api.slnx
+
+      - name: Build API solution
+        run: dotnet build Sd.ServiceOffering.Api/Sd.ServiceOffering.Api.slnx --configuration Release --no-restore
+
+      - name: Test API solution
+        run: dotnet test Sd.ServiceOffering.Api/Sd.ServiceOffering.Api.slnx --configuration Release --no-build --verbosity normal
+
+  database:
+    name: Build database project
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # SQL projects require Visual Studio MSBuild and SSDT; dotnet build cannot build this project.
+      - name: Build and validate database project
+        run: msbuild Sd.ServiceOffering.Database/Sd.ServiceOffering.Database/Sd.ServiceOffering.Database.sqlproj /t:Build /p:Configuration=Release /p:Platform=AnyCPU /m
